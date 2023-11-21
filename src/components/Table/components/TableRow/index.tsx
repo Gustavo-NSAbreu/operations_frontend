@@ -1,3 +1,4 @@
+import { deleteProduct } from "../../../../api/api";
 import { TableRowProps } from "../../../../interfaces/TableRow.interface";
 
 export default function TableRow({ id,  name, price, description }: TableRowProps) {
@@ -9,7 +10,7 @@ export default function TableRow({ id,  name, price, description }: TableRowProp
   }
 
   function handleDelete() {
-    
+    deleteProduct(id)
   }
 
   return (
