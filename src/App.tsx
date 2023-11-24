@@ -2,41 +2,55 @@ import { useState } from "react";
 import RegistrationForm from "./components/RegistrationForm";
 import Table from "./components/Table";
 import { Product, RegistrationFormData, registrationFormValidationSchema } from "./interfaces/App.interface";
-import { getProducts, registerProduct } from "./api/api";
+import { getAll, create } from "./api/api";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import UpdateModal from "./components/UpdateModal";
 
 export default function App() {
 
   const [products, setProducts] = useState<Product[]>([])
 
+  const [ dataDisplayedInModal, setDataDisplayedInModal ] = useState<Product>({} as Product);
+
+  const [ showUpdateModal, setShowUpdateModal ] = useState<Boolean>(false);
+
   const registrationForm = useForm<RegistrationFormData>({
     resolver: zodResolver(registrationFormValidationSchema),
     defaultValues: {
       name: "",
-      price: 0.0,
+      price: undefined,
       description: ""
     }
   });
+  
+  const { handleSubmit: handleRegistrationSubmit, reset: resetRegistrationForm } = registrationForm;
+  
 
+  
+  const toggleModal = () => setShowUpdateModal(!showUpdateModal);
+  
   async function fetchProducts() {
-    const allProducts = await getProducts();
+    const allProducts = await getAll();
     setProducts(allProducts);
   }
 
-  const { handleSubmit, reset } = registrationForm;
-
   async function createProduct(data: RegistrationFormData) {
-    await registerProduct(data);
+    await create(data);
     fetchProducts();
-    reset();
+    resetRegistrationForm();
+  }
+
+  function showModal(product: Product) {
+    toggleModal();
+    setDataDisplayedInModal(product);
   }
 
   return (
-    <body className="h-screen bg-gray-900 text-slate-50 flex flex-col items-center content-center p-8">
+    <div className="h-screen bg-gray-900 text-slate-50 flex flex-col items-center content-center p-8">
       <h1 className="text-2xl my-8">CRUD Operations</h1>
       <section className="w-[37rem] flex flex-col gap-4 bg-gray-800 items-start justify-center p-5 rounded-md mb-8">
-        <form onSubmit={handleSubmit(createProduct)}>
+        <form onSubmit={handleRegistrationSubmit(createProduct)}>
           <FormProvider {...registrationForm}>
             <RegistrationForm />
           </FormProvider>
@@ -46,9 +60,23 @@ export default function App() {
         <Table
           products={products}
           fetchProducts={fetchProducts}
+          showModal={showModal}
         />
       </section>
-    </body>
+      {
+        showUpdateModal ? (
+          <UpdateModal
+            id={dataDisplayedInModal.id}
+            name={dataDisplayedInModal.name}
+            price={dataDisplayedInModal.price}
+            description={dataDisplayedInModal.description}
+            toggleModal={toggleModal}
+            fetchProducts={fetchProducts}
+          />
+        ) : null
+      }
+      
+    </div>
   );
 
 }

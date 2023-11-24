@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { TableProps } from "../../interfaces/Table.interface";
 import TableRow from "./components/TableRow";
 
-export default function Table({ products, fetchProducts }: TableProps) {
+export default function Table({ products, fetchProducts, showModal }: TableProps) {
 
   useEffect(() => {
     fetchProducts();
@@ -13,7 +13,7 @@ export default function Table({ products, fetchProducts }: TableProps) {
     <table className="w-[50rem] table-fixed	">
       <thead>
         <tr className="text-left bg-stone-600">
-          <th className="px-2 py-1 rounded-tl-lg w-2/12">Id</th>
+          <th className="px-2 py-1 rounded-tl-lg w-1/12">Id</th>
           <th className="px-2 py-1 w-2/12">Name</th>
           <th className="px-2 py-1 w-1/12">Price</th>
           <th className="px-2 py-1 w-4/12">Description</th>
@@ -29,6 +29,7 @@ export default function Table({ products, fetchProducts }: TableProps) {
               name={product.name}
               price={product.price}
               description={product.description}
+              showModal={showModal}
             />
           )
         })}

@@ -1,16 +1,16 @@
-import { deleteProduct } from "../../../../api/api";
+import { kill } from "../../../../api/api";
 import { TableRowProps } from "../../../../interfaces/TableRow.interface";
 
-export default function TableRow({ id,  name, price, description }: TableRowProps) {
+export default function TableRow({ id,  name, price, description, showModal }: TableRowProps) {
 
   const formattedPrice = new Intl.NumberFormat('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2}).format(price);
 
   function handleEdit() {
-
+    showModal({id, name, price, description});
   }
 
   function handleDelete() {
-    deleteProduct(id)
+    kill(id)
   }
 
   return (
