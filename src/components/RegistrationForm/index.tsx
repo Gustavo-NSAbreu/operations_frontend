@@ -14,7 +14,7 @@ export default function RegistrationForm() {
         </div>
         <input className="rounded-sm p-1 w-full bg-gray-700" type="text" placeholder="Description" {...register("description")}/>
       </div>
-      <button className="mt-5 bg-stone-600 rounded-md py-1 px-3 border-none text-sm">Register</button>
+      <button className="mt-5 bg-stone-500 rounded-md py-1 px-3 border-none text-sm hover:bg-stone-400 hover:shadow-lg hover:shadow-gray-500/50">Register</button>
     </div>
   );
 }

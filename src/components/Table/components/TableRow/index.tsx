@@ -20,8 +20,8 @@ export default function TableRow({ id,  name, price, description, showModal }: T
       <td className="py-1 px-2 border-r-[1px] border-stone-300 truncate">$ {formattedPrice}</td>
       <td className="py-1 px-2 border-r-[1px] border-stone-300 truncate">{description}</td>
       <td className="py-1 px-2.5 text-center">
-        <button onClick={handleEdit} className="bg-stone-600 rounded-md py-[1px] px-3 border-none text-sm mr-2">Edit</button>
-        <button onClick={handleDelete} className="bg-stone-600 rounded-md py-[1px] px-3 border-none text-sm">Delete</button>
+        <button onClick={handleEdit} className="bg-stone-500 rounded-md py-[1px] px-3 border-none text-sm mr-2 hover:bg-stone-400 hover:shadow-lg hover:shadow-gray-500/50">Edit</button>
+        <button onClick={handleDelete} className="bg-stone-500 rounded-md py-[1px] px-3 border-none text-sm hover:bg-stone-400 hover:shadow-lg hover:shadow-gray-500/50">Delete</button>
       </td>
     </tr>
   );

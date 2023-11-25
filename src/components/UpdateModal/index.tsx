@@ -66,8 +66,8 @@ export default function UpdateModal( { id, name, price, description, toggleModal
             <input className="rounded-sm p-1 w-full bg-gray-700" type="text" placeholder="Description" {...register("description")}/>
           </div>
           <div className="flex flex-row gap-2">
-            <button type="submit" className="mt-5 bg-stone-600 rounded-md py-1 px-3 border-none text-sm">Confirm</button>
-            <button onClick={toggleModal} className="mt-5 bg-stone-600 rounded-md py-1 px-3 border-none text-sm">Cancel</button>
+            <button type="submit" className="mt-5 bg-stone-600 rounded-md py-1 px-3 border-none text-sm hover:bg-stone-400 hover:shadow-lg hover:shadow-gray-500/50">Confirm</button>
+            <button onClick={toggleModal} className="mt-5 bg-stone-600 rounded-md py-1 px-3 border-none text-sm hover:bg-stone-400 hover:shadow-lg hover:shadow-gray-500/50">Cancel</button>
           </div>
         </FormProvider>
       </form>

@@ -12,7 +12,7 @@ export default function Table({ products, fetchProducts, showModal }: TableProps
   return (
     <table className="w-[50rem] table-fixed	">
       <thead>
-        <tr className="text-left bg-stone-600">
+        <tr className="text-left bg-stone-500">
           <th className="px-2 py-1 rounded-tl-lg w-1/12">Id</th>
           <th className="px-2 py-1 w-2/12">Name</th>
           <th className="px-2 py-1 w-1/12">Price</th>
